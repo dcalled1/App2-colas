@@ -1,5 +1,16 @@
 import requests
 
+
+def receiveTask():
+    pass
+
+
+def doTask(task):
+    pass
+
+
+
+
 API_HOST = 'http://localhost:3000'
 
 
@@ -13,5 +24,6 @@ apiKey = requests.post(API_HOST + '/users/key/new', json={
 })
 
 while True:
-    pass
+    task = receiveTask()
+    doTask(task)
 
