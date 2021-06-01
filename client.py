@@ -7,8 +7,8 @@ import json
 MIN_TIME = 2
 MAX_TIME = 10
 API_HOST = 'http://localhost:3000'
-QUEUE = 'test1'
-APP_NAME = 'client server'
+QUEUE = 'testyqueue'
+APP_NAME = 'testyAppy'
 
 def prepareTask(id):
     description = input("Type the description of the task_{}: ".format(id))
@@ -54,6 +54,7 @@ print("Registration status:\n", registrationData)
 apiKey = requests.post(API_HOST + '/users/key/new', json={
     'username': username,
     'email': email,
+    'appname': APP_NAME,
 }).json()['apiKey']
 
 

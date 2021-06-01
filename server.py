@@ -7,25 +7,30 @@ import json
 MIN_TIME = 2
 MAX_TIME = 10
 API_HOST = 'http://localhost:3000'
-QUEUE = 'test1'
-APP_NAME = 'client server'
+QUEUE = 'testyqueue'
+APP_NAME = 'testyAppy'
 
 def receiveTask():
     print("trying to get tasks...")
-    r = requests.get(url="{host}/queues/{queue}/getmessage".format(host=API_HOST, queue=QUEUE)).json()
+    data = {
+        'username': username,
+        'apiKey': apiKey
+    }
+    r = requests.post(url="{host}/queues/{queue}/getmessage".format(host=API_HOST, queue=QUEUE), json=data).json()
     while not bool(r):
-        r = requests.get(url="{host}/queues/{queue}/getmessage".format(host=API_HOST, queue=QUEUE)).json()
+        r = requests.post(url="{host}/queues/{queue}/getmessage".format(host=API_HOST, queue=QUEUE), json=data).json()
         time.sleep(1)
     
     task = json.loads(r['message'])
-    print("task {id} founded. Description: {desc}".format(id=task['id'], desc=task['description']))
+    print("task {id} founded. Description: {desc}".format(id=task['task_id'], desc=task['description']))
     
     return task
 
 def doTask(task):
     taskTime = random.randint(MIN_TIME, MAX_TIME)
-    print("Doing task {id}. Estimated time: {time} seconds.".format(id=task['id'], time=taskTime))
+    print("Doing task {id}. Estimated time: {time} seconds.".format(id=task['task_id'], time=taskTime))
     time.sleep(taskTime)
+    print("Task {id} Done!.".format(id=task['task_id']))
 
 
 
