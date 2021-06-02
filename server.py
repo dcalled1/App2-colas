@@ -6,7 +6,7 @@ import json
 
 MIN_TIME = 2
 MAX_TIME = 10
-API_HOST = 'http://localhost:3000'
+API_HOST = 'ec2-34-237-172-133.compute-1.amazonaws.com:3000'
 QUEUE = 'testyqueue'
 APP_NAME = 'testyAppy'
 
